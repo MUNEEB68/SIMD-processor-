@@ -1,0 +1,44 @@
+## Quartus/FPGA build artifacts
+db/
+incremental_db/
+simulation/
+output_files/
+*.qpf
+*.qsf
+*.qws
+*.qdf
+*.qfs
+*.qts
+*.qds
+*.qxp
+*.qws
+*.rpt
+*.smsg
+*.cdf
+*.sof
+*.pof
+*.jic
+*.jam
+*.jbc
+*.svf
+*.pin
+*.summary
+*.qar
+*.done
+*.bak
+*.tmp
+*.rdb
+*.map
+*.fit
+*.asm
+*.sta
+*.fsm
+
+## OS/editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+## Environment variables
+.env

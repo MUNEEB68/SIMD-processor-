@@ -1,0 +1,21 @@
+# system info simd_system on 2026.05.08.20:43:32
+system_info:
+name,value
+DEVICE,5CSEMA5F31C6
+DEVICE_FAMILY,Cyclone V
+GENERATION_ID,1778254995
+#
+#
+# Files generated for simd_system on 2026.05.08.20:43:32
+files:
+filepath,kind,attributes,module,is_top
+simulation/simd_system.v,VERILOG,,simd_system,true
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+simd_system.cpu_debug_tap_0,simd_system_cpu_debug_tap_0
+simd_system.cpu_top_0,CPUtop
+simd_system.hps_0,simd_system_hps_0
+simd_system.mm_interconnect_0,simd_system_mm_interconnect_0
+simd_system.rst_controller,altera_reset_controller

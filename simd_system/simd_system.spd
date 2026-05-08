@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file path="simulation/simd_system.v" type="VERILOG" />
+ <topLevel name="simd_system" />
+ <deviceFamily name="cyclonev" />
+ <modelMap controllerPath="simd_system.hps_0" modelPath="simd_system.hps_0" />
+ <modelMap
+   controllerPath="simd_system.hps_0.fpga_interfaces"
+   modelPath="simd_system.hps_0.fpga_interfaces" />
+ <modelMap
+   controllerPath="simd_system.hps_0.hps_io"
+   modelPath="simd_system.hps_0.hps_io" />
+</simPackage>
