@@ -8,35 +8,98 @@ module simd_system (
 		input  wire  reset_reset_n  // reset.reset_n
 	);
 
-	wire  [31:0] master_0_master_readdata;                                // mm_interconnect_0:master_0_master_readdata -> master_0:master_readdata
-	wire         master_0_master_waitrequest;                             // mm_interconnect_0:master_0_master_waitrequest -> master_0:master_waitrequest
-	wire  [31:0] master_0_master_address;                                 // master_0:master_address -> mm_interconnect_0:master_0_master_address
-	wire         master_0_master_read;                                    // master_0:master_read -> mm_interconnect_0:master_0_master_read
-	wire   [3:0] master_0_master_byteenable;                              // master_0:master_byteenable -> mm_interconnect_0:master_0_master_byteenable
-	wire         master_0_master_readdatavalid;                           // mm_interconnect_0:master_0_master_readdatavalid -> master_0:master_readdatavalid
-	wire         master_0_master_write;                                   // master_0:master_write -> mm_interconnect_0:master_0_master_write
-	wire  [31:0] master_0_master_writedata;                               // master_0:master_writedata -> mm_interconnect_0:master_0_master_writedata
-	wire         mm_interconnect_0_cpu_debug_tap_0_s0_beginbursttransfer; // mm_interconnect_0:cpu_debug_tap_0_s0_beginbursttransfer -> cpu_debug_tap_0:s0_beginbursttransfer
-	wire  [31:0] mm_interconnect_0_cpu_debug_tap_0_s0_readdata;           // cpu_debug_tap_0:s0_readdata -> mm_interconnect_0:cpu_debug_tap_0_s0_readdata
-	wire         mm_interconnect_0_cpu_debug_tap_0_s0_waitrequest;        // cpu_debug_tap_0:s0_waitrequest -> mm_interconnect_0:cpu_debug_tap_0_s0_waitrequest
-	wire   [1:0] mm_interconnect_0_cpu_debug_tap_0_s0_address;            // mm_interconnect_0:cpu_debug_tap_0_s0_address -> cpu_debug_tap_0:s0_address
-	wire         mm_interconnect_0_cpu_debug_tap_0_s0_read;               // mm_interconnect_0:cpu_debug_tap_0_s0_read -> cpu_debug_tap_0:s0_read
-	wire   [3:0] mm_interconnect_0_cpu_debug_tap_0_s0_byteenable;         // mm_interconnect_0:cpu_debug_tap_0_s0_byteenable -> cpu_debug_tap_0:s0_byteenable
-	wire         mm_interconnect_0_cpu_debug_tap_0_s0_readdatavalid;      // cpu_debug_tap_0:s0_readdatavalid -> mm_interconnect_0:cpu_debug_tap_0_s0_readdatavalid
-	wire   [7:0] mm_interconnect_0_cpu_debug_tap_0_s0_burstcount;         // mm_interconnect_0:cpu_debug_tap_0_s0_burstcount -> cpu_debug_tap_0:s0_burstcount
-	wire         rst_controller_reset_out_reset;                          // rst_controller:reset_out -> [cpu_debug_tap_0:reset_n, mm_interconnect_0:cpu_debug_tap_0_reset_reset_bridge_in_reset_reset, mm_interconnect_0:master_0_clk_reset_reset_bridge_in_reset_reset]
+	wire         cpu_top_0_data_write_enable_write_enable;                   // cpu_top_0:data_W -> cpu_signal_fanout_0:cpu_data_W
+	wire   [9:0] cpu_top_0_data_address_data_addr;                           // cpu_top_0:data_address -> cpu_signal_fanout_0:cpu_data_address
+	wire  [15:0] data_memory_0_data_out_data;                                // data_memory_0:dout -> cpu_top_0:data_in
+	wire   [9:0] cpu_signal_fanout_0_data_mem_addr_out_data_addr;            // cpu_signal_fanout_0:data_mem_addr -> data_memory_0:addr
+	wire  [15:0] cpu_signal_fanout_0_data_mem_data_in_out_data;              // cpu_signal_fanout_0:data_mem_data_in -> data_memory_0:din
+	wire         cpu_signal_fanout_0_data_mem_read_en_out_read_enable;       // cpu_signal_fanout_0:data_mem_read_en -> data_memory_0:re
+	wire         cpu_signal_fanout_0_data_mem_write_en_out_write_enable;     // cpu_signal_fanout_0:data_mem_write_en -> data_memory_0:we
+	wire  [15:0] cpu_top_0_data_out_data;                                    // cpu_top_0:data_out -> cpu_signal_fanout_0:cpu_data_out
+	wire         cpu_top_0_data_read_enable_read_enable;                     // cpu_top_0:data_R -> cpu_signal_fanout_0:cpu_data_R
+	wire         cpu_signal_fanout_0_dbg_data_r_out_read_enable;             // cpu_signal_fanout_0:dbg_data_R -> cpu_debug_tap_0:data_R
+	wire         cpu_signal_fanout_0_dbg_data_w_out_data_w_sig;              // cpu_signal_fanout_0:dbg_data_W -> cpu_debug_tap_0:data_W
+	wire   [9:0] cpu_signal_fanout_0_dbg_data_address_out_data_addr;         // cpu_signal_fanout_0:dbg_data_address -> cpu_debug_tap_0:data_address
+	wire  [15:0] cpu_signal_fanout_0_dbg_data_out_out_data;                  // cpu_signal_fanout_0:dbg_data_out -> cpu_debug_tap_0:data_out
+	wire         cpu_signal_fanout_0_dbg_done_out_done;                      // cpu_signal_fanout_0:dbg_done -> cpu_debug_tap_0:done
+	wire         cpu_top_0_done_in_done_sig;                                 // cpu_top_0:done -> cpu_signal_fanout_0:cpu_done
+	wire  [15:0] cpu_top_0_h_regs_h0_sig;                                    // cpu_top_0:h0 -> cpu_debug_tap_0:h0
+	wire  [15:0] cpu_top_0_h_regs_h2_sig;                                    // cpu_top_0:h2 -> cpu_debug_tap_0:h2
+	wire  [15:0] cpu_top_0_h_regs_h1_sig;                                    // cpu_top_0:h1 -> cpu_debug_tap_0:h1
+	wire  [15:0] cpu_top_0_h_regs_h3_sig;                                    // cpu_top_0:h3 -> cpu_debug_tap_0:h3
+	wire   [9:0] cpu_signal_fanout_0_instr_mem_addr_out_addr_sig;            // cpu_signal_fanout_0:instr_mem_addr -> instruction_memory_0:addr
+	wire   [9:0] cpu_top_0_instruction_addr_out_addr_sig;                    // cpu_top_0:instruction_address -> cpu_signal_fanout_0:cpu_instruction_address
+	wire   [9:0] cpu_signal_fanout_0_dbg_instruction_address_out_addr_sig;   // cpu_signal_fanout_0:dbg_instruction_address -> cpu_debug_tap_0:instruction_address
+	wire  [17:0] instruction_memory_0_instruction_out_instruction_signal;    // instruction_memory_0:instruction -> instruction_fanout_0:instr_in
+	wire  [17:0] instruction_fanout_0_instruction_to_cpu_instruction_signal; // instruction_fanout_0:instr_to_cpu -> cpu_top_0:instruction_in
+	wire  [17:0] instruction_fanout_0_instruction_to_dbg_instruction_signal; // instruction_fanout_0:instr_to_dbg -> cpu_debug_tap_0:instruction_in
+	wire  [31:0] master_0_master_readdata;                                   // mm_interconnect_0:master_0_master_readdata -> master_0:master_readdata
+	wire         master_0_master_waitrequest;                                // mm_interconnect_0:master_0_master_waitrequest -> master_0:master_waitrequest
+	wire  [31:0] master_0_master_address;                                    // master_0:master_address -> mm_interconnect_0:master_0_master_address
+	wire         master_0_master_read;                                       // master_0:master_read -> mm_interconnect_0:master_0_master_read
+	wire   [3:0] master_0_master_byteenable;                                 // master_0:master_byteenable -> mm_interconnect_0:master_0_master_byteenable
+	wire         master_0_master_readdatavalid;                              // mm_interconnect_0:master_0_master_readdatavalid -> master_0:master_readdatavalid
+	wire         master_0_master_write;                                      // master_0:master_write -> mm_interconnect_0:master_0_master_write
+	wire  [31:0] master_0_master_writedata;                                  // master_0:master_writedata -> mm_interconnect_0:master_0_master_writedata
+	wire         mm_interconnect_0_cpu_debug_tap_0_s0_beginbursttransfer;    // mm_interconnect_0:cpu_debug_tap_0_s0_beginbursttransfer -> cpu_debug_tap_0:s0_beginbursttransfer
+	wire  [31:0] mm_interconnect_0_cpu_debug_tap_0_s0_readdata;              // cpu_debug_tap_0:s0_readdata -> mm_interconnect_0:cpu_debug_tap_0_s0_readdata
+	wire         mm_interconnect_0_cpu_debug_tap_0_s0_waitrequest;           // cpu_debug_tap_0:s0_waitrequest -> mm_interconnect_0:cpu_debug_tap_0_s0_waitrequest
+	wire   [3:0] mm_interconnect_0_cpu_debug_tap_0_s0_address;               // mm_interconnect_0:cpu_debug_tap_0_s0_address -> cpu_debug_tap_0:s0_address
+	wire         mm_interconnect_0_cpu_debug_tap_0_s0_read;                  // mm_interconnect_0:cpu_debug_tap_0_s0_read -> cpu_debug_tap_0:s0_read
+	wire   [3:0] mm_interconnect_0_cpu_debug_tap_0_s0_byteenable;            // mm_interconnect_0:cpu_debug_tap_0_s0_byteenable -> cpu_debug_tap_0:s0_byteenable
+	wire         mm_interconnect_0_cpu_debug_tap_0_s0_readdatavalid;         // cpu_debug_tap_0:s0_readdatavalid -> mm_interconnect_0:cpu_debug_tap_0_s0_readdatavalid
+	wire         mm_interconnect_0_cpu_debug_tap_0_s0_write;                 // mm_interconnect_0:cpu_debug_tap_0_s0_write -> cpu_debug_tap_0:s0_write
+	wire  [31:0] mm_interconnect_0_cpu_debug_tap_0_s0_writedata;             // mm_interconnect_0:cpu_debug_tap_0_s0_writedata -> cpu_debug_tap_0:s0_writedata
+	wire   [7:0] mm_interconnect_0_cpu_debug_tap_0_s0_burstcount;            // mm_interconnect_0:cpu_debug_tap_0_s0_burstcount -> cpu_debug_tap_0:s0_burstcount
+	wire         rst_controller_reset_out_reset;                             // rst_controller:reset_out -> [cpu_debug_tap_0:reset_n, mm_interconnect_0:cpu_debug_tap_0_reset_reset_bridge_in_reset_reset]
+	wire         master_0_master_reset_reset;                                // master_0:master_reset_reset -> rst_controller:reset_in0
+	wire         rst_controller_001_reset_out_reset;                         // rst_controller_001:reset_out -> [mm_interconnect_0:master_0_clk_reset_reset_bridge_in_reset_reset, mm_interconnect_0:master_0_master_translator_reset_reset_bridge_in_reset_reset]
 
 	cpu_debug_tap cpu_debug_tap_0 (
-		.clk                   (clk_clk),                                                 // clock.clk
-		.reset_n               (~rst_controller_reset_out_reset),                         // reset.reset_n
-		.s0_address            (mm_interconnect_0_cpu_debug_tap_0_s0_address),            //    s0.address
-		.s0_read               (mm_interconnect_0_cpu_debug_tap_0_s0_read),               //      .read
-		.s0_byteenable         (mm_interconnect_0_cpu_debug_tap_0_s0_byteenable),         //      .byteenable
-		.s0_burstcount         (mm_interconnect_0_cpu_debug_tap_0_s0_burstcount),         //      .burstcount
-		.s0_beginbursttransfer (mm_interconnect_0_cpu_debug_tap_0_s0_beginbursttransfer), //      .beginbursttransfer
-		.s0_readdata           (mm_interconnect_0_cpu_debug_tap_0_s0_readdata),           //      .readdata
-		.s0_readdatavalid      (mm_interconnect_0_cpu_debug_tap_0_s0_readdatavalid),      //      .readdatavalid
-		.s0_waitrequest        (mm_interconnect_0_cpu_debug_tap_0_s0_waitrequest)         //      .waitrequest
+		.clk                   (clk_clk),                                                    //               clock.clk
+		.reset_n               (~rst_controller_reset_out_reset),                            //               reset.reset_n
+		.s0_address            (mm_interconnect_0_cpu_debug_tap_0_s0_address),               //                  s0.address
+		.s0_read               (mm_interconnect_0_cpu_debug_tap_0_s0_read),                  //                    .read
+		.s0_write              (mm_interconnect_0_cpu_debug_tap_0_s0_write),                 //                    .write
+		.s0_byteenable         (mm_interconnect_0_cpu_debug_tap_0_s0_byteenable),            //                    .byteenable
+		.s0_burstcount         (mm_interconnect_0_cpu_debug_tap_0_s0_burstcount),            //                    .burstcount
+		.s0_beginbursttransfer (mm_interconnect_0_cpu_debug_tap_0_s0_beginbursttransfer),    //                    .beginbursttransfer
+		.s0_writedata          (mm_interconnect_0_cpu_debug_tap_0_s0_writedata),             //                    .writedata
+		.s0_readdata           (mm_interconnect_0_cpu_debug_tap_0_s0_readdata),              //                    .readdata
+		.s0_readdatavalid      (mm_interconnect_0_cpu_debug_tap_0_s0_readdatavalid),         //                    .readdatavalid
+		.s0_waitrequest        (mm_interconnect_0_cpu_debug_tap_0_s0_waitrequest),           //                    .waitrequest
+		.instruction_address   (cpu_signal_fanout_0_dbg_instruction_address_out_addr_sig),   // instruction_address.addr_sig
+		.instruction_in        (instruction_fanout_0_instruction_to_dbg_instruction_signal), //      instruction_in.instruction_signal
+		.data_address          (cpu_signal_fanout_0_dbg_data_address_out_data_addr),         //        data_address.data_addr
+		.data_out              (cpu_signal_fanout_0_dbg_data_out_out_data),                  //            data_out.data
+		.done                  (cpu_signal_fanout_0_dbg_done_out_done),                      //             done_in.done
+		.data_R                (cpu_signal_fanout_0_dbg_data_r_out_read_enable),             //           data_R_en.read_enable
+		.data_W                (cpu_signal_fanout_0_dbg_data_w_out_data_w_sig),              //           data_W_en.data_w_sig
+		.h0                    (cpu_top_0_h_regs_h0_sig),                                    //              h_regs.h0_sig
+		.h1                    (cpu_top_0_h_regs_h1_sig),                                    //                    .h1_sig
+		.h2                    (cpu_top_0_h_regs_h2_sig),                                    //                    .h2_sig
+		.h3                    (cpu_top_0_h_regs_h3_sig)                                     //                    .h3_sig
+	);
+
+	cpu_signal_fanout cpu_signal_fanout_0 (
+		.clk                     (clk_clk),                                                  //                       clock.clk
+		.cpu_instruction_address (cpu_top_0_instruction_addr_out_addr_sig),                  //  cpu_instruction_address_in.addr_sig
+		.cpu_data_address        (cpu_top_0_data_address_data_addr),                         //         cpu_data_address_in.data_addr
+		.cpu_data_out            (cpu_top_0_data_out_data),                                  //             cpu_data_out_in.data
+		.cpu_data_R              (cpu_top_0_data_read_enable_read_enable),                   //               cpu_data_R_in.read_enable
+		.cpu_data_W              (cpu_top_0_data_write_enable_write_enable),                 //               cpu_data_W_in.write_enable
+		.cpu_done                (cpu_top_0_done_in_done_sig),                               //                 cpu_done_in.done_sig
+		.instr_mem_addr          (cpu_signal_fanout_0_instr_mem_addr_out_addr_sig),          //          instr_mem_addr_out.addr_sig
+		.data_mem_addr           (cpu_signal_fanout_0_data_mem_addr_out_data_addr),          //           data_mem_addr_out.data_addr
+		.data_mem_data_in        (cpu_signal_fanout_0_data_mem_data_in_out_data),            //        data_mem_data_in_out.data
+		.data_mem_read_en        (cpu_signal_fanout_0_data_mem_read_en_out_read_enable),     //        data_mem_read_en_out.read_enable
+		.data_mem_write_en       (cpu_signal_fanout_0_data_mem_write_en_out_write_enable),   //       data_mem_write_en_out.write_enable
+		.dbg_instruction_address (cpu_signal_fanout_0_dbg_instruction_address_out_addr_sig), // dbg_instruction_address_out.addr_sig
+		.dbg_data_address        (cpu_signal_fanout_0_dbg_data_address_out_data_addr),       //        dbg_data_address_out.data_addr
+		.dbg_data_out            (cpu_signal_fanout_0_dbg_data_out_out_data),                //            dbg_data_out_out.data
+		.dbg_data_R              (cpu_signal_fanout_0_dbg_data_r_out_read_enable),           //              dbg_data_R_out.read_enable
+		.dbg_data_W              (cpu_signal_fanout_0_dbg_data_w_out_data_w_sig),            //              dbg_data_W_out.data_w_sig
+		.dbg_done                (cpu_signal_fanout_0_dbg_done_out_done)                     //                dbg_done_out.done
 	);
 
 	CPUtop #(
@@ -48,23 +111,41 @@ module simd_system (
 		.STATE_WB   (4'b0101),
 		.STATE_HALT (4'b0110)
 	) cpu_top_0 (
-		.clk               (clk_clk), //   clock.clk
-		.cpu_top_a         (),        // cpu_top.a
-		.cpu_top_c         (),        //        .c
-		.cpu_top_b         (),        //        .b
-		.cpu_top_clk       (),        //        .clk
-		.cpu_top_clk_en    (),        //        .clk_en
-		.cpu_top_dataa     (),        //        .dataa
-		.cpu_top_datab     (),        //        .datab
-		.cpu_top_done      (),        //        .done
-		.cpu_top_n         (),        //        .n
-		.cpu_top_readra    (),        //        .readra
-		.cpu_top_readrb    (),        //        .readrb
-		.cpu_top_reset     (),        //        .reset
-		.cpu_top_reset_req (),        //        .reset_req
-		.cpu_top_result    (),        //        .result
-		.cpu_top_start     (),        //        .start
-		.cpu_top_writerc   ()         //        .writerc
+		.clk                 (clk_clk),                                                    //                clock.clk
+		.data_in             (data_memory_0_data_out_data),                                //              data_in.data
+		.instruction_in      (instruction_fanout_0_instruction_to_cpu_instruction_signal), //       instruction_in.instruction_signal
+		.instruction_address (cpu_top_0_instruction_addr_out_addr_sig),                    // instruction_addr_out.addr_sig
+		.data_address        (cpu_top_0_data_address_data_addr),                           //         data_address.data_addr
+		.done                (cpu_top_0_done_in_done_sig),                                 //              done_in.done_sig
+		.data_out            (cpu_top_0_data_out_data),                                    //             data_out.data
+		.h0                  (cpu_top_0_h_regs_h0_sig),                                    //               h_regs.h0_sig
+		.h1                  (cpu_top_0_h_regs_h1_sig),                                    //                     .h1_sig
+		.h2                  (cpu_top_0_h_regs_h2_sig),                                    //                     .h2_sig
+		.h3                  (cpu_top_0_h_regs_h3_sig),                                    //                     .h3_sig
+		.data_R              (cpu_top_0_data_read_enable_read_enable),                     //     data_read_enable.read_enable
+		.data_W              (cpu_top_0_data_write_enable_write_enable)                    //    data_write_enable.write_enable
+	);
+
+	DataMemory data_memory_0 (
+		.clk  (clk_clk),                                                //        clock.clk
+		.re   (cpu_signal_fanout_0_data_mem_read_en_out_read_enable),   //  read_enable.read_enable
+		.we   (cpu_signal_fanout_0_data_mem_write_en_out_write_enable), // write_enable.write_enable
+		.addr (cpu_signal_fanout_0_data_mem_addr_out_data_addr),        //   address_in.data_addr
+		.din  (cpu_signal_fanout_0_data_mem_data_in_out_data),          //      data_in.data
+		.dout (data_memory_0_data_out_data)                             //     data_out.data
+	);
+
+	instruction_fanout instruction_fanout_0 (
+		.clk          (clk_clk),                                                    //              clock.clk
+		.instr_in     (instruction_memory_0_instruction_out_instruction_signal),    //     instruction_in.instruction_signal
+		.instr_to_cpu (instruction_fanout_0_instruction_to_cpu_instruction_signal), // instruction_to_cpu.instruction_signal
+		.instr_to_dbg (instruction_fanout_0_instruction_to_dbg_instruction_signal)  // instruction_to_dbg.instruction_signal
+	);
+
+	InstructionMemory instruction_memory_0 (
+		.clk         (clk_clk),                                                 //           clock.clk
+		.instruction (instruction_memory_0_instruction_out_instruction_signal), // instruction_out.instruction_signal
+		.addr        (cpu_signal_fanout_0_instr_mem_addr_out_addr_sig)          //         addr_in.addr_sig
 	);
 
 	simd_system_master_0 #(
@@ -82,29 +163,32 @@ module simd_system (
 		.master_waitrequest   (master_0_master_waitrequest),   //             .waitrequest
 		.master_readdatavalid (master_0_master_readdatavalid), //             .readdatavalid
 		.master_byteenable    (master_0_master_byteenable),    //             .byteenable
-		.master_reset_reset   ()                               // master_reset.reset
+		.master_reset_reset   (master_0_master_reset_reset)    // master_reset.reset
 	);
 
 	simd_system_mm_interconnect_0 mm_interconnect_0 (
-		.clk_0_clk_clk                                     (clk_clk),                                                 //                                   clk_0_clk.clk
-		.cpu_debug_tap_0_reset_reset_bridge_in_reset_reset (rst_controller_reset_out_reset),                          // cpu_debug_tap_0_reset_reset_bridge_in_reset.reset
-		.master_0_clk_reset_reset_bridge_in_reset_reset    (rst_controller_reset_out_reset),                          //    master_0_clk_reset_reset_bridge_in_reset.reset
-		.master_0_master_address                           (master_0_master_address),                                 //                             master_0_master.address
-		.master_0_master_waitrequest                       (master_0_master_waitrequest),                             //                                            .waitrequest
-		.master_0_master_byteenable                        (master_0_master_byteenable),                              //                                            .byteenable
-		.master_0_master_read                              (master_0_master_read),                                    //                                            .read
-		.master_0_master_readdata                          (master_0_master_readdata),                                //                                            .readdata
-		.master_0_master_readdatavalid                     (master_0_master_readdatavalid),                           //                                            .readdatavalid
-		.master_0_master_write                             (master_0_master_write),                                   //                                            .write
-		.master_0_master_writedata                         (master_0_master_writedata),                               //                                            .writedata
-		.cpu_debug_tap_0_s0_address                        (mm_interconnect_0_cpu_debug_tap_0_s0_address),            //                          cpu_debug_tap_0_s0.address
-		.cpu_debug_tap_0_s0_read                           (mm_interconnect_0_cpu_debug_tap_0_s0_read),               //                                            .read
-		.cpu_debug_tap_0_s0_readdata                       (mm_interconnect_0_cpu_debug_tap_0_s0_readdata),           //                                            .readdata
-		.cpu_debug_tap_0_s0_beginbursttransfer             (mm_interconnect_0_cpu_debug_tap_0_s0_beginbursttransfer), //                                            .beginbursttransfer
-		.cpu_debug_tap_0_s0_burstcount                     (mm_interconnect_0_cpu_debug_tap_0_s0_burstcount),         //                                            .burstcount
-		.cpu_debug_tap_0_s0_byteenable                     (mm_interconnect_0_cpu_debug_tap_0_s0_byteenable),         //                                            .byteenable
-		.cpu_debug_tap_0_s0_readdatavalid                  (mm_interconnect_0_cpu_debug_tap_0_s0_readdatavalid),      //                                            .readdatavalid
-		.cpu_debug_tap_0_s0_waitrequest                    (mm_interconnect_0_cpu_debug_tap_0_s0_waitrequest)         //                                            .waitrequest
+		.clk_0_clk_clk                                                (clk_clk),                                                 //                                              clk_0_clk.clk
+		.cpu_debug_tap_0_reset_reset_bridge_in_reset_reset            (rst_controller_reset_out_reset),                          //            cpu_debug_tap_0_reset_reset_bridge_in_reset.reset
+		.master_0_clk_reset_reset_bridge_in_reset_reset               (rst_controller_001_reset_out_reset),                      //               master_0_clk_reset_reset_bridge_in_reset.reset
+		.master_0_master_translator_reset_reset_bridge_in_reset_reset (rst_controller_001_reset_out_reset),                      // master_0_master_translator_reset_reset_bridge_in_reset.reset
+		.master_0_master_address                                      (master_0_master_address),                                 //                                        master_0_master.address
+		.master_0_master_waitrequest                                  (master_0_master_waitrequest),                             //                                                       .waitrequest
+		.master_0_master_byteenable                                   (master_0_master_byteenable),                              //                                                       .byteenable
+		.master_0_master_read                                         (master_0_master_read),                                    //                                                       .read
+		.master_0_master_readdata                                     (master_0_master_readdata),                                //                                                       .readdata
+		.master_0_master_readdatavalid                                (master_0_master_readdatavalid),                           //                                                       .readdatavalid
+		.master_0_master_write                                        (master_0_master_write),                                   //                                                       .write
+		.master_0_master_writedata                                    (master_0_master_writedata),                               //                                                       .writedata
+		.cpu_debug_tap_0_s0_address                                   (mm_interconnect_0_cpu_debug_tap_0_s0_address),            //                                     cpu_debug_tap_0_s0.address
+		.cpu_debug_tap_0_s0_write                                     (mm_interconnect_0_cpu_debug_tap_0_s0_write),              //                                                       .write
+		.cpu_debug_tap_0_s0_read                                      (mm_interconnect_0_cpu_debug_tap_0_s0_read),               //                                                       .read
+		.cpu_debug_tap_0_s0_readdata                                  (mm_interconnect_0_cpu_debug_tap_0_s0_readdata),           //                                                       .readdata
+		.cpu_debug_tap_0_s0_writedata                                 (mm_interconnect_0_cpu_debug_tap_0_s0_writedata),          //                                                       .writedata
+		.cpu_debug_tap_0_s0_beginbursttransfer                        (mm_interconnect_0_cpu_debug_tap_0_s0_beginbursttransfer), //                                                       .beginbursttransfer
+		.cpu_debug_tap_0_s0_burstcount                                (mm_interconnect_0_cpu_debug_tap_0_s0_burstcount),         //                                                       .burstcount
+		.cpu_debug_tap_0_s0_byteenable                                (mm_interconnect_0_cpu_debug_tap_0_s0_byteenable),         //                                                       .byteenable
+		.cpu_debug_tap_0_s0_readdatavalid                             (mm_interconnect_0_cpu_debug_tap_0_s0_readdatavalid),      //                                                       .readdatavalid
+		.cpu_debug_tap_0_s0_waitrequest                               (mm_interconnect_0_cpu_debug_tap_0_s0_waitrequest)         //                                                       .waitrequest
 	);
 
 	altera_reset_controller #(
@@ -133,7 +217,7 @@ module simd_system (
 		.USE_RESET_REQUEST_IN15    (0),
 		.ADAPT_RESET_REQUEST       (0)
 	) rst_controller (
-		.reset_in0      (~reset_reset_n),                 // reset_in0.reset
+		.reset_in0      (master_0_master_reset_reset),    // reset_in0.reset
 		.clk            (clk_clk),                        //       clk.clk
 		.reset_out      (rst_controller_reset_out_reset), // reset_out.reset
 		.reset_req      (),                               // (terminated)
@@ -168,6 +252,69 @@ module simd_system (
 		.reset_req_in14 (1'b0),                           // (terminated)
 		.reset_in15     (1'b0),                           // (terminated)
 		.reset_req_in15 (1'b0)                            // (terminated)
+	);
+
+	altera_reset_controller #(
+		.NUM_RESET_INPUTS          (1),
+		.OUTPUT_RESET_SYNC_EDGES   ("deassert"),
+		.SYNC_DEPTH                (2),
+		.RESET_REQUEST_PRESENT     (0),
+		.RESET_REQ_WAIT_TIME       (1),
+		.MIN_RST_ASSERTION_TIME    (3),
+		.RESET_REQ_EARLY_DSRT_TIME (1),
+		.USE_RESET_REQUEST_IN0     (0),
+		.USE_RESET_REQUEST_IN1     (0),
+		.USE_RESET_REQUEST_IN2     (0),
+		.USE_RESET_REQUEST_IN3     (0),
+		.USE_RESET_REQUEST_IN4     (0),
+		.USE_RESET_REQUEST_IN5     (0),
+		.USE_RESET_REQUEST_IN6     (0),
+		.USE_RESET_REQUEST_IN7     (0),
+		.USE_RESET_REQUEST_IN8     (0),
+		.USE_RESET_REQUEST_IN9     (0),
+		.USE_RESET_REQUEST_IN10    (0),
+		.USE_RESET_REQUEST_IN11    (0),
+		.USE_RESET_REQUEST_IN12    (0),
+		.USE_RESET_REQUEST_IN13    (0),
+		.USE_RESET_REQUEST_IN14    (0),
+		.USE_RESET_REQUEST_IN15    (0),
+		.ADAPT_RESET_REQUEST       (0)
+	) rst_controller_001 (
+		.reset_in0      (~reset_reset_n),                     // reset_in0.reset
+		.clk            (clk_clk),                            //       clk.clk
+		.reset_out      (rst_controller_001_reset_out_reset), // reset_out.reset
+		.reset_req      (),                                   // (terminated)
+		.reset_req_in0  (1'b0),                               // (terminated)
+		.reset_in1      (1'b0),                               // (terminated)
+		.reset_req_in1  (1'b0),                               // (terminated)
+		.reset_in2      (1'b0),                               // (terminated)
+		.reset_req_in2  (1'b0),                               // (terminated)
+		.reset_in3      (1'b0),                               // (terminated)
+		.reset_req_in3  (1'b0),                               // (terminated)
+		.reset_in4      (1'b0),                               // (terminated)
+		.reset_req_in4  (1'b0),                               // (terminated)
+		.reset_in5      (1'b0),                               // (terminated)
+		.reset_req_in5  (1'b0),                               // (terminated)
+		.reset_in6      (1'b0),                               // (terminated)
+		.reset_req_in6  (1'b0),                               // (terminated)
+		.reset_in7      (1'b0),                               // (terminated)
+		.reset_req_in7  (1'b0),                               // (terminated)
+		.reset_in8      (1'b0),                               // (terminated)
+		.reset_req_in8  (1'b0),                               // (terminated)
+		.reset_in9      (1'b0),                               // (terminated)
+		.reset_req_in9  (1'b0),                               // (terminated)
+		.reset_in10     (1'b0),                               // (terminated)
+		.reset_req_in10 (1'b0),                               // (terminated)
+		.reset_in11     (1'b0),                               // (terminated)
+		.reset_req_in11 (1'b0),                               // (terminated)
+		.reset_in12     (1'b0),                               // (terminated)
+		.reset_req_in12 (1'b0),                               // (terminated)
+		.reset_in13     (1'b0),                               // (terminated)
+		.reset_req_in13 (1'b0),                               // (terminated)
+		.reset_in14     (1'b0),                               // (terminated)
+		.reset_req_in14 (1'b0),                               // (terminated)
+		.reset_in15     (1'b0),                               // (terminated)
+		.reset_req_in15 (1'b0)                                // (terminated)
 	);
 
 endmodule

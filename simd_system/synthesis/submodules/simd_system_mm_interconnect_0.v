@@ -7,25 +7,28 @@
 
 `timescale 1 ps / 1 ps
 module simd_system_mm_interconnect_0 (
-		input  wire        clk_0_clk_clk,                                     //                                   clk_0_clk.clk
-		input  wire        cpu_debug_tap_0_reset_reset_bridge_in_reset_reset, // cpu_debug_tap_0_reset_reset_bridge_in_reset.reset
-		input  wire        master_0_clk_reset_reset_bridge_in_reset_reset,    //    master_0_clk_reset_reset_bridge_in_reset.reset
-		input  wire [31:0] master_0_master_address,                           //                             master_0_master.address
-		output wire        master_0_master_waitrequest,                       //                                            .waitrequest
-		input  wire [3:0]  master_0_master_byteenable,                        //                                            .byteenable
-		input  wire        master_0_master_read,                              //                                            .read
-		output wire [31:0] master_0_master_readdata,                          //                                            .readdata
-		output wire        master_0_master_readdatavalid,                     //                                            .readdatavalid
-		input  wire        master_0_master_write,                             //                                            .write
-		input  wire [31:0] master_0_master_writedata,                         //                                            .writedata
-		output wire [1:0]  cpu_debug_tap_0_s0_address,                        //                          cpu_debug_tap_0_s0.address
-		output wire        cpu_debug_tap_0_s0_read,                           //                                            .read
-		input  wire [31:0] cpu_debug_tap_0_s0_readdata,                       //                                            .readdata
-		output wire        cpu_debug_tap_0_s0_beginbursttransfer,             //                                            .beginbursttransfer
-		output wire [7:0]  cpu_debug_tap_0_s0_burstcount,                     //                                            .burstcount
-		output wire [3:0]  cpu_debug_tap_0_s0_byteenable,                     //                                            .byteenable
-		input  wire        cpu_debug_tap_0_s0_readdatavalid,                  //                                            .readdatavalid
-		input  wire        cpu_debug_tap_0_s0_waitrequest                     //                                            .waitrequest
+		input  wire        clk_0_clk_clk,                                                //                                              clk_0_clk.clk
+		input  wire        cpu_debug_tap_0_reset_reset_bridge_in_reset_reset,            //            cpu_debug_tap_0_reset_reset_bridge_in_reset.reset
+		input  wire        master_0_clk_reset_reset_bridge_in_reset_reset,               //               master_0_clk_reset_reset_bridge_in_reset.reset
+		input  wire        master_0_master_translator_reset_reset_bridge_in_reset_reset, // master_0_master_translator_reset_reset_bridge_in_reset.reset
+		input  wire [31:0] master_0_master_address,                                      //                                        master_0_master.address
+		output wire        master_0_master_waitrequest,                                  //                                                       .waitrequest
+		input  wire [3:0]  master_0_master_byteenable,                                   //                                                       .byteenable
+		input  wire        master_0_master_read,                                         //                                                       .read
+		output wire [31:0] master_0_master_readdata,                                     //                                                       .readdata
+		output wire        master_0_master_readdatavalid,                                //                                                       .readdatavalid
+		input  wire        master_0_master_write,                                        //                                                       .write
+		input  wire [31:0] master_0_master_writedata,                                    //                                                       .writedata
+		output wire [3:0]  cpu_debug_tap_0_s0_address,                                   //                                     cpu_debug_tap_0_s0.address
+		output wire        cpu_debug_tap_0_s0_write,                                     //                                                       .write
+		output wire        cpu_debug_tap_0_s0_read,                                      //                                                       .read
+		input  wire [31:0] cpu_debug_tap_0_s0_readdata,                                  //                                                       .readdata
+		output wire [31:0] cpu_debug_tap_0_s0_writedata,                                 //                                                       .writedata
+		output wire        cpu_debug_tap_0_s0_beginbursttransfer,                        //                                                       .beginbursttransfer
+		output wire [7:0]  cpu_debug_tap_0_s0_burstcount,                                //                                                       .burstcount
+		output wire [3:0]  cpu_debug_tap_0_s0_byteenable,                                //                                                       .byteenable
+		input  wire        cpu_debug_tap_0_s0_readdatavalid,                             //                                                       .readdatavalid
+		input  wire        cpu_debug_tap_0_s0_waitrequest                                //                                                       .waitrequest
 	);
 
 	wire          master_0_master_translator_avalon_universal_master_0_waitrequest;   // master_0_master_agent:av_waitrequest -> master_0_master_translator:uav_waitrequest
@@ -140,7 +143,7 @@ module simd_system_mm_interconnect_0 (
 		.AV_REGISTERINCOMINGSIGNALS  (0)
 	) master_0_master_translator (
 		.clk                    (clk_0_clk_clk),                                                      //                       clk.clk
-		.reset                  (cpu_debug_tap_0_reset_reset_bridge_in_reset_reset),                  //                     reset.reset
+		.reset                  (master_0_master_translator_reset_reset_bridge_in_reset_reset),       //                     reset.reset
 		.uav_address            (master_0_master_translator_avalon_universal_master_0_address),       // avalon_universal_master_0.address
 		.uav_burstcount         (master_0_master_translator_avalon_universal_master_0_burstcount),    //                          .burstcount
 		.uav_read               (master_0_master_translator_avalon_universal_master_0_read),          //                          .read
@@ -175,7 +178,7 @@ module simd_system_mm_interconnect_0 (
 	);
 
 	altera_merlin_slave_translator #(
-		.AV_ADDRESS_W                   (2),
+		.AV_ADDRESS_W                   (4),
 		.AV_DATA_W                      (32),
 		.UAV_DATA_W                     (32),
 		.AV_BURSTCOUNT_W                (8),
@@ -215,15 +218,15 @@ module simd_system_mm_interconnect_0 (
 		.uav_lock               (cpu_debug_tap_0_s0_agent_m0_lock),                  //                         .lock
 		.uav_debugaccess        (cpu_debug_tap_0_s0_agent_m0_debugaccess),           //                         .debugaccess
 		.av_address             (cpu_debug_tap_0_s0_address),                        //      avalon_anti_slave_0.address
+		.av_write               (cpu_debug_tap_0_s0_write),                          //                         .write
 		.av_read                (cpu_debug_tap_0_s0_read),                           //                         .read
 		.av_readdata            (cpu_debug_tap_0_s0_readdata),                       //                         .readdata
+		.av_writedata           (cpu_debug_tap_0_s0_writedata),                      //                         .writedata
 		.av_beginbursttransfer  (cpu_debug_tap_0_s0_beginbursttransfer),             //                         .beginbursttransfer
 		.av_burstcount          (cpu_debug_tap_0_s0_burstcount),                     //                         .burstcount
 		.av_byteenable          (cpu_debug_tap_0_s0_byteenable),                     //                         .byteenable
 		.av_readdatavalid       (cpu_debug_tap_0_s0_readdatavalid),                  //                         .readdatavalid
 		.av_waitrequest         (cpu_debug_tap_0_s0_waitrequest),                    //                         .waitrequest
-		.av_write               (),                                                  //              (terminated)
-		.av_writedata           (),                                                  //              (terminated)
 		.av_begintransfer       (),                                                  //              (terminated)
 		.av_writebyteenable     (),                                                  //              (terminated)
 		.av_lock                (),                                                  //              (terminated)
@@ -292,7 +295,7 @@ module simd_system_mm_interconnect_0 (
 		.USE_WRITERESPONSE         (0)
 	) master_0_master_agent (
 		.clk                   (clk_0_clk_clk),                                                      //       clk.clk
-		.reset                 (cpu_debug_tap_0_reset_reset_bridge_in_reset_reset),                  // clk_reset.reset
+		.reset                 (master_0_master_translator_reset_reset_bridge_in_reset_reset),       // clk_reset.reset
 		.av_address            (master_0_master_translator_avalon_universal_master_0_address),       //        av.address
 		.av_write              (master_0_master_translator_avalon_universal_master_0_write),         //          .write
 		.av_read               (master_0_master_translator_avalon_universal_master_0_read),          //          .read
@@ -445,19 +448,19 @@ module simd_system_mm_interconnect_0 (
 	);
 
 	simd_system_mm_interconnect_0_router router (
-		.sink_ready         (master_0_master_agent_cp_ready),                    //      sink.ready
-		.sink_valid         (master_0_master_agent_cp_valid),                    //          .valid
-		.sink_data          (master_0_master_agent_cp_data),                     //          .data
-		.sink_startofpacket (master_0_master_agent_cp_startofpacket),            //          .startofpacket
-		.sink_endofpacket   (master_0_master_agent_cp_endofpacket),              //          .endofpacket
-		.clk                (clk_0_clk_clk),                                     //       clk.clk
-		.reset              (cpu_debug_tap_0_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.src_ready          (router_src_ready),                                  //       src.ready
-		.src_valid          (router_src_valid),                                  //          .valid
-		.src_data           (router_src_data),                                   //          .data
-		.src_channel        (router_src_channel),                                //          .channel
-		.src_startofpacket  (router_src_startofpacket),                          //          .startofpacket
-		.src_endofpacket    (router_src_endofpacket)                             //          .endofpacket
+		.sink_ready         (master_0_master_agent_cp_ready),                               //      sink.ready
+		.sink_valid         (master_0_master_agent_cp_valid),                               //          .valid
+		.sink_data          (master_0_master_agent_cp_data),                                //          .data
+		.sink_startofpacket (master_0_master_agent_cp_startofpacket),                       //          .startofpacket
+		.sink_endofpacket   (master_0_master_agent_cp_endofpacket),                         //          .endofpacket
+		.clk                (clk_0_clk_clk),                                                //       clk.clk
+		.reset              (master_0_master_translator_reset_reset_bridge_in_reset_reset), // clk_reset.reset
+		.src_ready          (router_src_ready),                                             //       src.ready
+		.src_valid          (router_src_valid),                                             //          .valid
+		.src_data           (router_src_data),                                              //          .data
+		.src_channel        (router_src_channel),                                           //          .channel
+		.src_startofpacket  (router_src_startofpacket),                                     //          .startofpacket
+		.src_endofpacket    (router_src_endofpacket)                                        //          .endofpacket
 	);
 
 	simd_system_mm_interconnect_0_router_001 router_001 (
@@ -477,20 +480,20 @@ module simd_system_mm_interconnect_0 (
 	);
 
 	simd_system_mm_interconnect_0_cmd_demux cmd_demux (
-		.clk                (clk_0_clk_clk),                                     //       clk.clk
-		.reset              (cpu_debug_tap_0_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.sink_ready         (router_src_ready),                                  //      sink.ready
-		.sink_channel       (router_src_channel),                                //          .channel
-		.sink_data          (router_src_data),                                   //          .data
-		.sink_startofpacket (router_src_startofpacket),                          //          .startofpacket
-		.sink_endofpacket   (router_src_endofpacket),                            //          .endofpacket
-		.sink_valid         (router_src_valid),                                  //          .valid
-		.src0_ready         (cmd_demux_src0_ready),                              //      src0.ready
-		.src0_valid         (cmd_demux_src0_valid),                              //          .valid
-		.src0_data          (cmd_demux_src0_data),                               //          .data
-		.src0_channel       (cmd_demux_src0_channel),                            //          .channel
-		.src0_startofpacket (cmd_demux_src0_startofpacket),                      //          .startofpacket
-		.src0_endofpacket   (cmd_demux_src0_endofpacket)                         //          .endofpacket
+		.clk                (clk_0_clk_clk),                                                //       clk.clk
+		.reset              (master_0_master_translator_reset_reset_bridge_in_reset_reset), // clk_reset.reset
+		.sink_ready         (router_src_ready),                                             //      sink.ready
+		.sink_channel       (router_src_channel),                                           //          .channel
+		.sink_data          (router_src_data),                                              //          .data
+		.sink_startofpacket (router_src_startofpacket),                                     //          .startofpacket
+		.sink_endofpacket   (router_src_endofpacket),                                       //          .endofpacket
+		.sink_valid         (router_src_valid),                                             //          .valid
+		.src0_ready         (cmd_demux_src0_ready),                                         //      src0.ready
+		.src0_valid         (cmd_demux_src0_valid),                                         //          .valid
+		.src0_data          (cmd_demux_src0_data),                                          //          .data
+		.src0_channel       (cmd_demux_src0_channel),                                       //          .channel
+		.src0_startofpacket (cmd_demux_src0_startofpacket),                                 //          .startofpacket
+		.src0_endofpacket   (cmd_demux_src0_endofpacket)                                    //          .endofpacket
 	);
 
 	simd_system_mm_interconnect_0_cmd_mux cmd_mux (
@@ -528,20 +531,20 @@ module simd_system_mm_interconnect_0 (
 	);
 
 	simd_system_mm_interconnect_0_rsp_mux rsp_mux (
-		.clk                 (clk_0_clk_clk),                                     //       clk.clk
-		.reset               (cpu_debug_tap_0_reset_reset_bridge_in_reset_reset), // clk_reset.reset
-		.src_ready           (rsp_mux_src_ready),                                 //       src.ready
-		.src_valid           (rsp_mux_src_valid),                                 //          .valid
-		.src_data            (rsp_mux_src_data),                                  //          .data
-		.src_channel         (rsp_mux_src_channel),                               //          .channel
-		.src_startofpacket   (rsp_mux_src_startofpacket),                         //          .startofpacket
-		.src_endofpacket     (rsp_mux_src_endofpacket),                           //          .endofpacket
-		.sink0_ready         (rsp_demux_src0_ready),                              //     sink0.ready
-		.sink0_valid         (rsp_demux_src0_valid),                              //          .valid
-		.sink0_channel       (rsp_demux_src0_channel),                            //          .channel
-		.sink0_data          (rsp_demux_src0_data),                               //          .data
-		.sink0_startofpacket (rsp_demux_src0_startofpacket),                      //          .startofpacket
-		.sink0_endofpacket   (rsp_demux_src0_endofpacket)                         //          .endofpacket
+		.clk                 (clk_0_clk_clk),                                                //       clk.clk
+		.reset               (master_0_master_translator_reset_reset_bridge_in_reset_reset), // clk_reset.reset
+		.src_ready           (rsp_mux_src_ready),                                            //       src.ready
+		.src_valid           (rsp_mux_src_valid),                                            //          .valid
+		.src_data            (rsp_mux_src_data),                                             //          .data
+		.src_channel         (rsp_mux_src_channel),                                          //          .channel
+		.src_startofpacket   (rsp_mux_src_startofpacket),                                    //          .startofpacket
+		.src_endofpacket     (rsp_mux_src_endofpacket),                                      //          .endofpacket
+		.sink0_ready         (rsp_demux_src0_ready),                                         //     sink0.ready
+		.sink0_valid         (rsp_demux_src0_valid),                                         //          .valid
+		.sink0_channel       (rsp_demux_src0_channel),                                       //          .channel
+		.sink0_data          (rsp_demux_src0_data),                                          //          .data
+		.sink0_startofpacket (rsp_demux_src0_startofpacket),                                 //          .startofpacket
+		.sink0_endofpacket   (rsp_demux_src0_endofpacket)                                    //          .endofpacket
 	);
 
 	simd_system_mm_interconnect_0_avalon_st_adapter #(

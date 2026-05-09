@@ -5,7 +5,11 @@ module CPUtop(
     output [15:0] data_out, //data out to data memory
     output [9:0]  instruction_address, //PC to instruction memory (10 bits for 1024 instructions)
     output [9:0]  data_address, //address to data memory (10 bits for 1024 words)
-    output data_R, data_W, done //enable signal for write,read,done
+    output data_R, data_W, done, //enable signal for write,read,done
+    output [15:0] h0,
+    output [15:0] h1,
+    output [15:0] h2,
+    output [15:0] h3
 );
 
 wire [5:0] opcode = instruction_in[17:12]; //opcode extraction
@@ -63,6 +67,10 @@ assign data_W       = wdata_en;
 assign data_address = current_data_address;
 assign instruction_address = PC;
 assign done = (current_state == STATE_HALT);
+assign h0 = H[0];
+assign h1 = H[1];
+assign h2 = H[2];
+assign h3 = H[3];
 
 //FSM 
 always @(posedge clk) begin

@@ -7,7 +7,12 @@ This project contains a SIMD CPU core (`cputop.v`) and a debug observation tap (
 ### Architecture
 
 - **cputop.v**: Main CPU with H/O/Q register banks and SIMD ALUs (add, multiply, shift, logic).
-- **cpu_debug_tap.v**: Avalon-MM slave that exposes instruction address, opcode, data signals, and a sample counter.
+- **cpu_debug_tap.v**: Avalon-MM slave that exposes instruction address, opcode, data signals, sample counter, and H0-H3.
+- **rtl/InstructionMemory.v**: ROM initialized from `mem/program.mem`.
+- **rtl/DataMemory.v**: Simple synchronous data RAM.
+- **rtl/cpu_signal_fanout.v**: Splits CPU address/data/control signals to memory and debug tap.
+- **rtl/instruction_fanout.v**: Splits instruction word to CPU and debug tap.
+- **system_console_debug.tcl**: System Console helper to read debug registers over JTAG.
 - **platform_designer_setup.tcl**: Quartus Tcl script that auto-generates a minimal Qsys project skeleton.
 
 ### Project Structure (Current)
@@ -17,7 +22,19 @@ This project contains a SIMD CPU core (`cputop.v`) and a debug observation tap (
 |-- cputop.v
 |-- cpu_debug_tap.v
 |-- cpu_debug_tap_hw.tcl
+|-- cpu_signal_fanout_hw.tcl
 |-- cpu_top_hw.tcl
+|-- data_memory_hw.tcl
+|-- instruction_fanout_hw.tcl
+|-- instruction_memory_hw.tcl
+|-- mem/
+|   `-- program.mem
+|-- rtl/
+|   |-- InstructionMemory.v
+|   |-- DataMemory.v
+|   |-- cpu_signal_fanout.v
+|   `-- instruction_fanout.v
+|-- system_console_debug.tcl
 |-- platform_designer_setup.tcl
 |-- simd_system.qsys
 |-- simd_system.sopcinfo
@@ -76,10 +93,11 @@ This will:
 - Browse to `qsys_components/cpu_debug_tap/` and import `cpu_debug_tap.v`.
 - Name it `cpu_debug_tap`.
 - **Important:** Manually define the Avalon-MM Slave interface:
-  - In the component editor, add a new interface of type "Avalon Memory Mapped Slave".
-  - Set address width to 2 bits (registers at offsets 0x0, 0x4, 0x8, 0xC).
-  - Set data width to 32 bits.
-  - Map address/read/readdata signals to the Verilog ports.
+   - In the component editor, add a new interface of type "Avalon Memory Mapped Slave".
+   - Set address width to 4 bits (registers at offsets 0x0..0x1C).
+   - Set data width to 32 bits.
+   - Map address/read/readdata signals to the Verilog ports.
+- Add a conduit for `instruction_in` and `h_regs` (h0-h3) so they can be wired in Platform Designer.
 - Click Finish and instantiate it in the system.
 
 #### 4. Add JTAG Master (for debug)
@@ -99,7 +117,13 @@ This will:
    - Route `reset_n` to both modules.
 
 3. Wire the CPU signals to the debug tap:
-   - In the Verilog instantiation or Platform Designer advanced mode, connect CPU outputs (instruction_in, instruction_address, data_address, data_out, data_R, data_W, done) to the debug tap inputs.
+   - For direct wiring, connect CPU outputs (instruction_address, data_address, data_out, data_R, data_W, done) and `instruction_in` to the debug tap inputs.
+   - For dual connections (CPU to memory and debug), insert `cpu_signal_fanout` and `instruction_fanout`.
+
+**Instruction/Data Memory:**
+- Add `instruction_memory`, `data_memory`, `cpu_signal_fanout`, and `instruction_fanout` components.
+- Wire `cpu_signal_fanout` between CPU ↔ memories and CPU ↔ debug tap.
+- Wire `instruction_fanout` between instruction memory ↔ CPU/debug tap.
 
 #### 6. Generate and Export
 
@@ -129,6 +153,10 @@ The `cpu_debug_tap` Avalon-MM slave provides these read-only registers:
 | 0x4 | Data Signals | data_out (16 bits), data_address (10 bits) |
 | 0x8 | Instruction | Full instruction word (18 bits) |
 | 0xC | Sample Counter | Increments on each new CPU instruction (16 bits) |
+| 0x10 | H0 | H0 register (16 bits) |
+| 0x14 | H1 | H1 register (16 bits) |
+| 0x18 | H2 | H2 register (16 bits) |
+| 0x1C | H3 | H3 register (16 bits) |
 
 ### JTAG Debug (System Console)
 
@@ -144,4 +172,15 @@ master_read_32 $mm 0x00000000 4
 close_service master $mm
 ```
 
-This returns the 4 debug registers in order: control/status, data signals, instruction, and sample counter.
+This returns the 8 debug registers in order: control/status, data signals, instruction, sample counter, and H0-H3.
+
+You can also use the helper:
+
+```tcl
+source system_console_debug.tcl
+read_cpu_debug 0x00000000
+```
+
+### Instruction Memory Format
+
+`mem/program.mem` must contain plain binary lines (18 bits each). Do not include comments or `0b` prefixes.

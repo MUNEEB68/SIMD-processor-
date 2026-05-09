@@ -11,9 +11,13 @@ module cpu_debug_tap (
     input         data_R,
     input         data_W,
     input         done,
+    input  [15:0] h0,
+    input  [15:0] h1,
+    input  [15:0] h2,
+    input  [15:0] h3,
 
     // Avalon-MM slave interface (s0)
-    input  [1:0]  s0_address,
+    input  [3:0]  s0_address,
     input         s0_read,
     input         s0_write,
     input  [3:0]  s0_byteenable,
@@ -64,10 +68,14 @@ module cpu_debug_tap (
             end else if (read_pending) begin
                 // on the cycle after the read request, present data and valid
                 case (s0_address)
-                    2'd0: s0_readdata <= {10'd0, done, data_W, data_R, opcode, instruction_address};
-                    2'd1: s0_readdata <= {16'd0, data_out, data_address};
-                    2'd2: s0_readdata <= {14'd0, instruction_in};
-                    2'd3: s0_readdata <= {16'd0, sample_counter};
+                    4'd0: s0_readdata <= {10'd0, done, data_W, data_R, opcode, instruction_address};
+                    4'd1: s0_readdata <= {16'd0, data_out, data_address};
+                    4'd2: s0_readdata <= {14'd0, instruction_in};
+                    4'd3: s0_readdata <= {16'd0, sample_counter};
+                    4'd4: s0_readdata <= {16'd0, h0};
+                    4'd5: s0_readdata <= {16'd0, h1};
+                    4'd6: s0_readdata <= {16'd0, h2};
+                    4'd7: s0_readdata <= {16'd0, h3};
                     default: s0_readdata <= 32'd0;
                 endcase
                 s0_readdatavalid <= 1'b1;

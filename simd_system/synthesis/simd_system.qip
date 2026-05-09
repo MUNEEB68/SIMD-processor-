@@ -2,7 +2,7 @@ set_global_assignment -entity "simd_system" -library "simd_system" -name IP_TOOL
 set_global_assignment -entity "simd_system" -library "simd_system" -name IP_TOOL_VERSION "20.1"
 set_global_assignment -entity "simd_system" -library "simd_system" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "simd_system" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../simd_system.sopcinfo"]
-set_global_assignment -entity "simd_system" -library "simd_system" -name SLD_INFO "QSYS_NAME simd_system HAS_SOPCINFO 1 GENERATION_ID 1778261601"
+set_global_assignment -entity "simd_system" -library "simd_system" -name SLD_INFO "QSYS_NAME simd_system HAS_SOPCINFO 1 GENERATION_ID 1778288795"
 set_global_assignment -library "simd_system" -name MISC_FILE [file join $::quartus(qip_path) "../simd_system.cmp"]
 set_global_assignment -library "simd_system" -name SLD_FILE [file join $::quartus(qip_path) "simd_system.debuginfo"]
 set_global_assignment -entity "simd_system" -library "simd_system" -name IP_TARGETED_DEVICE_FAMILY "Cyclone V"
@@ -15,7 +15,7 @@ set_global_assignment -entity "simd_system" -library "simd_system" -name IP_COMP
 set_global_assignment -entity "simd_system" -library "simd_system" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "simd_system" -library "simd_system" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "simd_system" -library "simd_system" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "simd_system" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTc3ODI2MTYwMQ==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "simd_system" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTc3ODI4ODc5NQ==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "simd_system" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::Q3ljbG9uZSBW::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "simd_system" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::NUNTRU1BNUYzMUM2::QXV0byBERVZJQ0U="
 set_global_assignment -entity "simd_system" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Ng==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
@@ -196,9 +196,9 @@ set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "s
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_DESCRIPTION "Um91dGVzIGNvbW1hbmQgcGFja2V0cyBmcm9tIHRoZSBtYXN0ZXIgdG8gdGhlIHNsYXZlIGFuZCByZXNwb25zZSBwYWNrZXRzIGZyb20gdGhlIHNsYXZlIHRvIHRoZSBtYXN0ZXIu"
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "REVTVElOQVRJT05fSUQ=::MA==::RGVzdGluYXRpb24gSUQ="
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "Q0hBTk5FTF9JRA==::MQ==::QmluYXJ5IENoYW5uZWwgU3RyaW5n"
-set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "VFlQRV9PRl9UUkFOU0FDVElPTg==::cmVhZA==::VHlwZSBvZiBUcmFuc2FjdGlvbg=="
+set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "VFlQRV9PRl9UUkFOU0FDVElPTg==::Ym90aA==::VHlwZSBvZiBUcmFuc2FjdGlvbg=="
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "U1RBUlRfQUREUkVTUw==::MHgw::U3RhcnQgYWRkcmVzc2VzIChpbmNsdXNpdmUp"
-set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "RU5EX0FERFJFU1M=::MHgxMA==::RW5kIGFkZHJlc3NlcyAoZXhjbHVzaXZlKQ=="
+set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "RU5EX0FERFJFU1M=::MHg0MA==::RW5kIGFkZHJlc3NlcyAoZXhjbHVzaXZlKQ=="
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "Tk9OX1NFQ1VSRURfVEFH::MQ==::Tm9uLXNlY3VyZWQgdGFncw=="
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "U0VDVVJFRF9SQU5HRV9QQUlSUw==::MA==::TnVtYmVyIG9mIHNlY3VyZWQgcmFuZ2UgcGFpcnM="
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "U0VDVVJFRF9SQU5HRV9MSVNU::MA==::U2VjdXJlZCByYW5nZSBwYWlycw=="
@@ -212,7 +212,7 @@ set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "s
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "UEtUX1RSQU5TX1JFQUQ=::NzE=::UGFja2V0IHJlYWQgdHJhbnNhY3Rpb24gZmllbGQgaW5kZXg="
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "U1RfREFUQV9X::MTA5::U3RyZWFtaW5nIGRhdGEgd2lkdGg="
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "U1RfQ0hBTk5FTF9X::MQ==::U3RyZWFtaW5nIGNoYW5uZWwgd2lkdGg="
-set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "U0xBVkVTX0lORk8=::MDoxOjB4MDoweDEwOnJlYWQ6MTowOjA6MQ==::U0xBVkVTX0lORk8="
+set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "U0xBVkVTX0lORk8=::MDoxOjB4MDoweDQwOmJvdGg6MTowOjA6MQ==::U0xBVkVTX0lORk8="
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "REVDT0RFUl9UWVBF::MA==::RGVjb2RlciB0eXBl"
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "REVGQVVMVF9DSEFOTkVM::MA==::RGVmYXVsdCBjaGFubmVs"
 set_global_assignment -entity "simd_system_mm_interconnect_0_router" -library "simd_system" -name IP_COMPONENT_PARAMETER "REVGQVVMVF9XUl9DSEFOTkVM::LTE=::RGVmYXVsdCB3ciBjaGFubmVs"
@@ -358,7 +358,7 @@ set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_sy
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_AUTHOR "QWx0ZXJhIENvcnBvcmF0aW9u"
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_VERSION "MjAuMQ=="
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_DESCRIPTION "Q29udmVydHMgdGhlIEF2YWxvbi1NTSBzbGF2ZSBpbnRlcmZhY2UgdG8gYSBzaW1wbGlmaWVkIHJlcHJlc2VudGF0aW9uIHRoYXQgdGhlIFFzeXMgbmV0d29yayB1c2VzLiBSZWZlciB0byB0aGUgQXZhbG9uIEludGVyZmFjZSBTcGVjaWZpY2F0aW9ucyAoaHR0cDovL3d3dy5hbHRlcmEuY29tL2xpdGVyYXR1cmUvbWFudWFsL21ubF9hdmFsb25fc3BlYy5wZGYpIGZvciBkZWZpbml0aW9ucyBvZiB0aGUgQXZhbG9uLU1NIHNpZ25hbHMgYW5kIGV4cGxhbmF0aW9ucyBvZiB0aGUgYnVyc3RpbmcgcHJvcGVydGllcyBhbmQgYWRkcmVzcyBhbGlnbm1lbnQu"
-set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVZfQUREUkVTU19X::Mg==::Q29tcG9uZW50IGFkZHJlc3Mgd2lkdGg="
+set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVZfQUREUkVTU19X::NA==::Q29tcG9uZW50IGFkZHJlc3Mgd2lkdGg="
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVZfREFUQV9X::MzI=::Q29tcG9uZW50IERhdGEgd2lkdGg="
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "VUFWX0RBVEFfVw==::MzI=::TmV0d29yayBEYXRhIHdpZHRo"
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVZfQlVSU1RDT1VOVF9X::OA==::Q29tcG9uZW50IGJ1cnN0Y291bnQgd2lkdGg="
@@ -373,9 +373,9 @@ set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_sy
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVZfREFUQV9IT0xE::MA==::SG9sZCB0aW1l"
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "QVZfVElNSU5HX1VOSVRT::MQ==::VGltaW5nIHVuaXRz"
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "VVNFX1JFQUREQVRB::MQ==::VXNlIHJlYWRkYXRh"
-set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "VVNFX1dSSVRFREFUQQ==::MA==::VXNlIHdyaXRlZGF0YQ=="
+set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "VVNFX1dSSVRFREFUQQ==::MQ==::VXNlIHdyaXRlZGF0YQ=="
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "VVNFX1JFQUQ=::MQ==::VXNlIHJlYWQ="
-set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "VVNFX1dSSVRF::MA==::VXNlIHdyaXRl"
+set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "VVNFX1dSSVRF::MQ==::VXNlIHdyaXRl"
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "VVNFX0JFR0lOQlVSU1RUUkFOU0ZFUg==::MQ==::VXNlIGJlZ2luYnVyc3R0cmFuc2Zlcg=="
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "VVNFX0JFR0lOVFJBTlNGRVI=::MA==::VXNlIGJlZ2ludHJhbnNmZXI="
 set_global_assignment -entity "altera_merlin_slave_translator" -library "simd_system" -name IP_COMPONENT_PARAMETER "VVNFX0JZVEVFTkFCTEU=::MQ==::VXNlIGJ5dGVlbmFibGU="
@@ -577,6 +577,24 @@ set_global_assignment -entity "altera_avalon_st_jtag_interface" -library "simd_s
 set_global_assignment -entity "altera_avalon_st_jtag_interface" -library "simd_system" -name IP_COMPONENT_PARAMETER "VVNFX0RPV05TVFJFQU1fUkVBRFk=::MA==::VVNFX0RPV05TVFJFQU1fUkVBRFk="
 set_global_assignment -entity "altera_avalon_st_jtag_interface" -library "simd_system" -name IP_COMPONENT_PARAMETER "Q09NUE9ORU5UX0NMT0NL::MA==::Q09NUE9ORU5UX0NMT0NL"
 set_global_assignment -entity "altera_avalon_st_jtag_interface" -library "simd_system" -name IP_COMPONENT_PARAMETER "RkFCUklD::Mi4w::RkFCUklD"
+set_global_assignment -entity "InstructionMemory" -library "simd_system" -name IP_COMPONENT_NAME "SW5zdHJ1Y3Rpb25NZW1vcnk="
+set_global_assignment -entity "InstructionMemory" -library "simd_system" -name IP_COMPONENT_DISPLAY_NAME "aW5zdHJ1Y3Rpb25fbWVtb3J5"
+set_global_assignment -entity "InstructionMemory" -library "simd_system" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "InstructionMemory" -library "simd_system" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "InstructionMemory" -library "simd_system" -name IP_COMPONENT_AUTHOR "QWtiYXIgU2hhaCBaYXI="
+set_global_assignment -entity "InstructionMemory" -library "simd_system" -name IP_COMPONENT_VERSION "MS4w"
+set_global_assignment -entity "instruction_fanout" -library "simd_system" -name IP_COMPONENT_NAME "aW5zdHJ1Y3Rpb25fZmFub3V0"
+set_global_assignment -entity "instruction_fanout" -library "simd_system" -name IP_COMPONENT_DISPLAY_NAME "aW5zdHJ1Y3Rpb25fZmFub3V0"
+set_global_assignment -entity "instruction_fanout" -library "simd_system" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "instruction_fanout" -library "simd_system" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "instruction_fanout" -library "simd_system" -name IP_COMPONENT_AUTHOR "QWtiYXIgU2hhaCBaYXI="
+set_global_assignment -entity "instruction_fanout" -library "simd_system" -name IP_COMPONENT_VERSION "MS4w"
+set_global_assignment -entity "DataMemory" -library "simd_system" -name IP_COMPONENT_NAME "RGF0YU1lbW9yeQ=="
+set_global_assignment -entity "DataMemory" -library "simd_system" -name IP_COMPONENT_DISPLAY_NAME "ZGF0YV9tZW1vcnk="
+set_global_assignment -entity "DataMemory" -library "simd_system" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "DataMemory" -library "simd_system" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "DataMemory" -library "simd_system" -name IP_COMPONENT_AUTHOR "QWtiYXIgU2hhaCBaYXI="
+set_global_assignment -entity "DataMemory" -library "simd_system" -name IP_COMPONENT_VERSION "MS4w"
 set_global_assignment -entity "CPUtop" -library "simd_system" -name IP_COMPONENT_NAME "Q1BVdG9w"
 set_global_assignment -entity "CPUtop" -library "simd_system" -name IP_COMPONENT_DISPLAY_NAME "Y3B1X3RvcA=="
 set_global_assignment -entity "CPUtop" -library "simd_system" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
@@ -590,6 +608,12 @@ set_global_assignment -entity "CPUtop" -library "simd_system" -name IP_COMPONENT
 set_global_assignment -entity "CPUtop" -library "simd_system" -name IP_COMPONENT_PARAMETER "U1RBVEVfTUVN::NA==::U1RBVEVfTUVN"
 set_global_assignment -entity "CPUtop" -library "simd_system" -name IP_COMPONENT_PARAMETER "U1RBVEVfV0I=::NQ==::U1RBVEVfV0I="
 set_global_assignment -entity "CPUtop" -library "simd_system" -name IP_COMPONENT_PARAMETER "U1RBVEVfSEFMVA==::Ng==::U1RBVEVfSEFMVA=="
+set_global_assignment -entity "cpu_signal_fanout" -library "simd_system" -name IP_COMPONENT_NAME "Y3B1X3NpZ25hbF9mYW5vdXQ="
+set_global_assignment -entity "cpu_signal_fanout" -library "simd_system" -name IP_COMPONENT_DISPLAY_NAME "Y3B1X3NpZ25hbF9mYW5vdXQ="
+set_global_assignment -entity "cpu_signal_fanout" -library "simd_system" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
+set_global_assignment -entity "cpu_signal_fanout" -library "simd_system" -name IP_COMPONENT_INTERNAL "Off"
+set_global_assignment -entity "cpu_signal_fanout" -library "simd_system" -name IP_COMPONENT_AUTHOR "QWtiYXIgU2hhaCBaYXI="
+set_global_assignment -entity "cpu_signal_fanout" -library "simd_system" -name IP_COMPONENT_VERSION "MS4w"
 set_global_assignment -entity "cpu_debug_tap" -library "simd_system" -name IP_COMPONENT_NAME "Y3B1X2RlYnVnX3RhcA=="
 set_global_assignment -entity "cpu_debug_tap" -library "simd_system" -name IP_COMPONENT_DISPLAY_NAME "Y3B1X2RlYnVnX3RhcA=="
 set_global_assignment -entity "cpu_debug_tap" -library "simd_system" -name IP_COMPONENT_REPORT_HIERARCHY "Off"
@@ -634,7 +658,11 @@ set_global_assignment -library "simd_system" -name VERILOG_FILE [file join $::qu
 set_global_assignment -library "simd_system" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_avalon_st_idle_inserter.v"]
 set_global_assignment -library "simd_system" -name SYSTEMVERILOG_FILE [file join $::quartus(qip_path) "submodules/altera_avalon_st_pipeline_stage.sv"]
 set_global_assignment -library "simd_system" -name SDC_FILE [file join $::quartus(qip_path) "submodules/altera_avalon_st_jtag_interface.sdc"]
+set_global_assignment -library "simd_system" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/InstructionMemory.v"]
+set_global_assignment -library "simd_system" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/instruction_fanout.v"]
+set_global_assignment -library "simd_system" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/DataMemory.v"]
 set_global_assignment -library "simd_system" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/cputop.v"]
+set_global_assignment -library "simd_system" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/cpu_signal_fanout.v"]
 set_global_assignment -library "simd_system" -name VERILOG_FILE [file join $::quartus(qip_path) "submodules/cpu_debug_tap.v"]
 
 set_global_assignment -entity "altera_reset_controller" -library "simd_system" -name IP_TOOL_NAME "altera_reset_controller"

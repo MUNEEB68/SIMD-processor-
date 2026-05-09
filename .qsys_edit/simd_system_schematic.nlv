@@ -1,4 +1,50 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst simd_system -pg 1 -lvl 1 -y 30
-levelinfo -pg 1 0 20 110
+preplace inst simd_system.instruction_fanout_0 -pg 1 -lvl 3 -y 650
+preplace inst simd_system.master_0.p2b -pg 1
+preplace inst simd_system.clk_0 -pg 1 -lvl 1 -y 70
+preplace inst simd_system.master_0.jtag_phy_embedded_in_jtag_master -pg 1
+preplace inst simd_system.cpu_top_0 -pg 1 -lvl 3 -y 750
+preplace inst simd_system.master_0.b2p -pg 1
+preplace inst simd_system.data_memory_0 -pg 1 -lvl 2 -y 260
+preplace inst simd_system.master_0.clk_rst -pg 1
+preplace inst simd_system.master_0 -pg 1 -lvl 2 -y 90
+preplace inst simd_system.instruction_memory_0 -pg 1 -lvl 3 -y 970
+preplace inst simd_system.master_0.transacto -pg 1
+preplace inst simd_system.master_0.clk_src -pg 1
+preplace inst simd_system -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst simd_system.master_0.p2b_adapter -pg 1
+preplace inst simd_system.master_0.b2p_adapter -pg 1
+preplace inst simd_system.master_0.fifo -pg 1
+preplace inst simd_system.master_0.timing_adt -pg 1
+preplace inst simd_system.cpu_signal_fanout_0 -pg 1 -lvl 3 -y 270
+preplace inst simd_system.cpu_debug_tap_0 -pg 1 -lvl 3 -y 30
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)master_0.clk_reset,(MASTER)clk_0.clk_reset) 1 1 1 260
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)instruction_fanout_0.instruction_to_cpu,(SLAVE)cpu_top_0.instruction_in) 1 2 1 980
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)data_memory_0.address_in,(SLAVE)cpu_signal_fanout_0.data_mem_addr_out) 1 1 2 320 410 660
+preplace netloc EXPORT<net_container>simd_system</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)simd_system.reset) 1 0 1 NJ
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_top_0.data_address,(SLAVE)cpu_signal_fanout_0.cpu_data_address_in) 1 2 1 940
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_signal_fanout_0.instr_mem_addr_out,(SLAVE)instruction_memory_0.addr_in) 1 2 1 840
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_signal_fanout_0.dbg_done_out,(SLAVE)cpu_debug_tap_0.done_in) 1 2 1 840
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_top_0.data_read_enable,(SLAVE)cpu_signal_fanout_0.cpu_data_R_in) 1 2 1 720
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)data_memory_0.read_enable,(SLAVE)cpu_signal_fanout_0.data_mem_read_en_out) 1 1 2 340 430 640
+preplace netloc EXPORT<net_container>simd_system</net_container>(SLAVE)clk_0.clk_in,(SLAVE)simd_system.clk) 1 0 1 NJ
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_top_0.done_in,(SLAVE)cpu_signal_fanout_0.cpu_done_in) 1 2 1 900
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)data_memory_0.write_enable,(SLAVE)cpu_signal_fanout_0.data_mem_write_en_out) 1 1 2 360 450 620
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)data_memory_0.data_in,(SLAVE)cpu_signal_fanout_0.data_mem_data_in_out) 1 1 2 300 250 680
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_signal_fanout_0.dbg_data_out_out,(SLAVE)cpu_debug_tap_0.data_out) 1 2 1 820
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_signal_fanout_0.cpu_data_W_in,(SLAVE)cpu_top_0.data_write_enable) 1 2 1 740
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(MASTER)master_0.master,(SLAVE)cpu_debug_tap_0.s0) 1 2 1 740
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)instruction_fanout_0.instruction_in,(SLAVE)instruction_memory_0.instruction_out) 1 2 1 860
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_signal_fanout_0.dbg_instruction_address_out,(SLAVE)cpu_debug_tap_0.instruction_address) 1 2 1 860
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_signal_fanout_0.dbg_data_R_out,(SLAVE)cpu_debug_tap_0.data_R_en) 1 2 1 760
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_top_0.data_in,(SLAVE)data_memory_0.data_out) 1 1 2 300 800 NJ
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(MASTER)master_0.master_reset,(SLAVE)cpu_debug_tap_0.reset) 1 2 1 720
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)instruction_fanout_0.instruction_to_dbg,(SLAVE)cpu_debug_tap_0.instruction_in) 1 2 1 880
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_debug_tap_0.data_address,(SLAVE)cpu_signal_fanout_0.dbg_data_address_out) 1 2 1 800
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_signal_fanout_0.cpu_data_out_in,(SLAVE)cpu_top_0.data_out) 1 2 1 960
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_signal_fanout_0.cpu_instruction_address_in,(SLAVE)cpu_top_0.instruction_addr_out) 1 2 1 920
+preplace netloc POINT_TO_POINT<net_container>simd_system</net_container>(SLAVE)cpu_debug_tap_0.data_W_en,(SLAVE)cpu_signal_fanout_0.dbg_data_W_out) 1 2 1 780
+preplace netloc FAN_OUT<net_container>simd_system</net_container>(SLAVE)data_memory_0.clock,(MASTER)clk_0.clk,(SLAVE)master_0.clk,(SLAVE)cpu_top_0.clock,(SLAVE)instruction_fanout_0.clock,(SLAVE)cpu_debug_tap_0.clock,(SLAVE)cpu_signal_fanout_0.clock,(SLAVE)instruction_memory_0.clock) 1 1 2 280 50 700
+levelinfo -pg 1 0 50 1230
+levelinfo -hier simd_system 60 90 460 1020 1220
