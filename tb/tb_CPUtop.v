@@ -41,12 +41,37 @@ always @(posedge clk) begin
         data_mem[data_address] <= data_out;
 end
 
+// Per-cycle snapshot
+always @(posedge clk) begin
+    if (!rst) begin
+        cycle <= cycle + 1;
+        $strobe("C=%0d PC=%0d state=%0d instr=%b | H0=%0d H1=%0d H2=%0d H3=%0d",
+                cycle,
+                instruction_address,
+                uut.current_state,
+                instruction_in,
+                uut.H[0], uut.H[1], uut.H[2], uut.H[3]);
+    end
+end
+
+// Per-instruction snapshot (post-WB)
+always @(posedge clk) begin
+    if (!rst && (uut.current_state == 3'd5)) begin
+        $strobe("INST_DONE PC=%0d instr=%b | H0=%0d H1=%0d H2=%0d H3=%0d",
+                instruction_address,
+                instruction_in,
+                uut.H[0], uut.H[1], uut.H[2], uut.H[3]);
+    end
+end
+
 integer i;
+integer cycle;
 
 initial begin
 
     clk = 0;
     rst = 1;
+    cycle = 0;
 
     // init memory
     for(i=0;i<256;i=i+1) begin
